@@ -15,6 +15,10 @@ var app = express();
 var server = http.createServer(app);
 var io = socketIO(server);
 
+app.use(express.static(publicPath, { //removing .html file endings
+    extensions: ['html'],
+}));
+
 io.on('connection', (socket) => {
     console.log("new user connected");
 
