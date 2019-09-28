@@ -6,4 +6,3 @@ URL = "https://www.noxinfluencer.com/youtube-channel-rank/top-100-all-all-youtub
 r = requests.get(URL)
 soup = BeautifulSoup(r.content, 'html5lib')
 bodies = soup.findAll("span", {"class": "num"})
-print(bodies)
