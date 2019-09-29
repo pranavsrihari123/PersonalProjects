@@ -35,14 +35,25 @@ var UserSchema = new mongoose.Schema({
       type: String,
       required: true
     }
-  }]
+  }],
+  stocks: [{
+    name: {
+      type: String,
+      required: true
+    },
+    quantity: {
+      type: Number,
+      required: true
+    }
+  }
+  ]
 });
 
 UserSchema.methods.toJSON = function () {
   var user = this;
   var userObject = user.toObject();
 
-  return _.pick(userObject, ['password', 'email', 'name']);
+  return _.pick(userObject, ['stocks','email', 'name', 'tokens']);
 };
 
 UserSchema.methods.generateAuthToken = function () {
@@ -62,7 +73,7 @@ UserSchema.statics.findByToken = function (token) {
   var decoded;
 
   try {
-    decoded = jwt.verify(token, 'fsjfkjsafjksfjksjf');
+    decoded = jwt.verify(token, '54');
   } catch (e) {
     console.log("jwt token error:",e);
     return Promise.reject();

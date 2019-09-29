@@ -46,7 +46,8 @@ io.on('connection', (socket) => {
             email: params.email,
             password: params.password,
             name: params.name,
-            phone: params.phone
+            phone: params.phone,
+            stocks: params.stocks
         });
 
         user.save().then(() => {
@@ -59,6 +60,14 @@ io.on('connection', (socket) => {
             console.log("User saving failed", err);
         });
     });
+
+    socket.on('checkToken', (params) => {
+        authenticate(params.token).then((user) => {
+                socket.emit('tokenVerified', user);
+           }).catch((e) => {
+                console.log("Authentication failed");
+            });
+        });
 })
 
 server.listen(port, () => {

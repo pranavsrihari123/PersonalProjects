@@ -1,0 +1,37 @@
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>InStock</title>
+		
+		<link rel="stylesheet" href="styles/account.css">
+	</head>
+	<body>
+		<img src="images/logo.png" class="logo">
+		<p id="message"></p>
+        
+        <div id="accountInfo">
+            <p class="center" style="font-weight:bold;">Your account info:</p>
+            <!-- <img src="images/panda.jpg" class="logo"> -->
+           <div class="specialAlign">
+                <p class="left">Name:</p>
+                <p id="name" class="right"></p>
+           </div>
+            
+            <div class="specialAlign">
+                <p class="left">Email:</p>
+                <p id="email" class="right"></p>
+           </div>
+
+           <div id="previousRequests">
+
+            </div>
+        </div>
+
+
+		<script src="/socket.io/socket.io.js"></script>
+        <script src="/js/libs/jquery-3.3.1.min.js"></script>
+        <script src="js/common.js"></script>
+        <script src="js/account.js"></script>
+	</body>
+
+</html>
