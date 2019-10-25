@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
   <link rel="stylesheet" href="styles/index.css">
+  <link rel="stylesheet" href="column_tab.css">
 </head>
 
 
@@ -13,7 +14,7 @@
 <body>
   <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
-    <a href="">
+    <a href="homepage.html" >
       <img src="inStock.jpg" width="112">
     </a>
 
@@ -27,14 +28,14 @@
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
 
-      <a class="navbar-item">
+      <a href="reward.html" class="navbar-item">
         Free Reward
       </a>
-      <a class="navbar-item">
+      <a href="market.html" class="navbar-item">
         Market
       </a>
 
-      <a class="navbar-item" href="login">
+      <a href="redeem.html" class="navbar-item" href="login">
         Redeem
       </a>
       <div class="navbar-item has-dropdown is-hoverable">
@@ -62,56 +63,27 @@
     </div>
   </nav>
 
-<div class="container">
-  <section class="hero-head is-primary"></section>
-  <section class="hero-body">
-    <div class="container">
-      <p class="title">
-        Search an Influencer
-      </p>
-      <input class="input" type="text" placeholder="Pogan Laul">
-    </div>
+  <section class="section">
+    <nav class="level">
+      <div class="level-left">
+        <div class="level-item">
+          <div class="container isfullhd">
+            <div class="tabs is-large is-boxed is-toggle">
+              <ul>
+                <li class="is-active"><a>Youtube</a></li>
+                <li><a>Instagram</a></li>
+                <li><a>Sports</a></li>
+                <li><a>Twitch</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
   </section>
-  <section class="hero-foot is-success"></section>
 
-</div>
 
-<section class="below section-padding">
-    <!-- <h1 class="title is-1 page-hero-title bla">Trending</h1> -->
-    <section class="hero-body">
-        <div class="container">
-          <p class="title">
-            Trending:
-          </p>
-        </div>
-      </section>
 
-    <section class="hero-body">
-        <p class="title">Logan Paul</p>
-        <figure class="image is-128x128">
-          <img src="logan_paul.jpg">
-        </figure>
-          <img src="graph.png">
-        <p>Stock price: $1.25</p>
+  </body>
 
-    </section>
-
-    <section class="hero-body">
-        <div class="container">
-            <p class="title">MrBeast</p>
-            <p>Stock price: $1.85</p>
-        </div>
-          <img src="graph1.png">
-    </section>
-
-    <section class="hero-body">
-        <div class="container">
-            <p class="title">MrBeast</p>
-            <p>Stock price: $1.85</p>
-        </div>
-    </section>
-</section>
-
-</body>
-
-</html>
+  </html>
