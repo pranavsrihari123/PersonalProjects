@@ -11,6 +11,7 @@ var {mongoose} = require('./db/mongoose');
 const {validateEmail, validateName, validatePassword} = require('./utils/validation');
 const {authenticate} = require('./utils/authenticate');
 const {User} = require('./models/user');
+const {Stock} = require('./models/stock');
 
 const port = process.env.PORT || 3000;
 
@@ -29,10 +30,10 @@ io.on('connection', (socket) => {
         console.log("login request receieved by server");
 
         User.findByCredentials(params.email, params.password).then((user) => {
-            console.log("login fun entered");
+            console.log("login function entered");
             return user.generateAuthToken();
         }).then((token) => {
-            console.log("token generated . in next fun now");
+            console.log("token generated . in next function now");
             return socket.emit('token', token);
         }).catch((err) => {
             console.log("error encountered");
@@ -68,8 +69,61 @@ io.on('connection', (socket) => {
                 console.log("Authentication failed");
             });
         });
+
+    socket.on('getInfluencerStock', (params) => {
+        Stock.findByInfluencerId(params.influencerId).then((stock) => {
+            if (stock) {
+                console.log("About to emit: ", stock);
+                socket.emit('influencerStock', {stock, influencerId: params.influencerId});
+            }
+        }).catch((err) => {
+            console.log("influencer stock method problem");
+        }) 
+    });
+
+    socket.on('getTransactionsBySeller', (params) => {
+        Transaction.findTransactionsBySeller(params.seller).then((transactions) => {
+            if (transactions) {
+                console.log("About to emit: ", transactions);
+                socket.emit('transactionsBySeller', {transactions, seller: params.seller});
+            }
+        }).catch((err) => {
+            console.log("no transactions found or err", err);
+        })
+    });
+
+    socket.on('getTransactionsByBuyer', (params) => {
+        Transaction.findTransactionsBySeller(params.buyer).then((transactions) => {
+            if (transactions) {
+                console.log("About to emit: ", transactions);
+                socket.emit('transactionsByBuyer', {transactions, buyer: params.buyer});
+            }
+        }).catch((err) => {
+            console.log("no transactions found or err", err);
+        })
+    });
 })
 
 server.listen(port, () => {
     console.log(`Server is up on ${port}`);
   });
+
+//   var stock1 = new Stock({
+//       id: 101,
+//       name: "Logan Paul",
+//       influencerId: 23,
+//       ipoQuantity: 30
+//   });
+
+//   var stock2 = new Stock({
+//     id: 102,
+//     name: "PewDiePie",
+//     influencerId: 25,
+//     ipoQuantity: 2121
+// });
+
+//   stock2.save().then(() => {
+//       console.log("Logan Paul saved");
+//   }).catch((err) => {
+//       console.log("Err: " + err);
+//   });
